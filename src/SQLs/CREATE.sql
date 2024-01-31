@@ -3,6 +3,7 @@ CREATE TABLE user(
     user_alias VARCHAR(64) NOT NULL,
     mail_address VARCHAR(64) NOT NULL,
     user_password VARCHAR(32) NOT NULL,
+    user_biography VARCHAR(256),
     PRIMARY KEY (user_id)
 );
 CREATE TABLE post (
@@ -12,6 +13,8 @@ CREATE TABLE post (
     post_title VARCHAR(100),
     post_description VARCHAR(480),
     post_explanation VARCHAR(480),
+    image_path VARCHAR(120),
+    correct_answer INTEGER,
     PRIMARY KEY (post_id),
     FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
@@ -43,7 +46,11 @@ CREATE TABLE vote (
     post_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
     vote_number INTEGER NOT NULL,
-    PRIMARY KEY(vote_id),
-    FOREIGN KEY(post_id) REFERENCES post(post_id),
-    FOREIGN KEY(user_id) REFERENCES post(user_id)
+    PRIMARY KEY(vote_id)
+);
+
+CREATE TABLE category (
+    category_id INTEGER AUTO_INCREMENT;
+    category_name VARCHAR(120) NOT NULL,
+    PRIMARY KEY(category_id)
 );
